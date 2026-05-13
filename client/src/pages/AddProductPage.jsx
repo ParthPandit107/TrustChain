@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { PackagePlus, CheckCircle2 } from 'lucide-react';
-import Barcode from 'react-barcode';
+
 
 export default function AddProductPage() {
   const [formData, setFormData] = useState({
@@ -83,7 +83,7 @@ export default function AddProductPage() {
               
               <p className="text-sm text-slate-500 mb-2">Generated Barcode</p>
               <div className="flex justify-center bg-white p-2 border border-slate-200 rounded-lg">
-                <Barcode value={result.productId} height={50} displayValue={false} />
+                <img src={`https://barcode.orcascan.com/?type=code128&data=${result.productId}`} alt="Barcode" className="mx-auto h-16 object-contain" />
               </div>
               
               <p className="text-xs text-slate-400 mt-4">Print either of these and attach to the product</p>
