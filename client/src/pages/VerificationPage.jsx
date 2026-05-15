@@ -12,9 +12,9 @@ export default function VerificationPage() {
   useEffect(() => {
     // We only want to initialize the scanner if we are not showing a result
     if (!verificationResult) {
+      // Removed the square qrbox restriction so it can easily scan wide 1D barcodes
       const scanner = new Html5QrcodeScanner('reader', {
-        qrbox: { width: 250, height: 250 },
-        fps: 5,
+        fps: 10,
       });
 
       scanner.render(onScanSuccess, onScanError);
