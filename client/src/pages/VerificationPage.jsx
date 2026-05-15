@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Html5QrcodeScanner } from 'html5-qrcode';
+import { Html5QrcodeScanner, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import axios from 'axios';
 import { ScanLine, CheckCircle, XCircle, Search } from 'lucide-react';
 
@@ -15,13 +15,19 @@ export default function VerificationPage() {
       // Removed the square qrbox restriction so it can easily scan wide 1D barcodes
       const scanner = new Html5QrcodeScanner('reader', {
         fps: 10,
-      });
+        formatsToSupport: [
+          Html5QrcodeSupportedFormats.QR_CODE,
+          Html5QrcodeSupportedFormats.CODE_128,
+          Html5QrcodeSupportedFormats.CODE_39,
+          Html5QrcodeSupportedFormats.EAN_13
+        ]
+      }, false);
 
       scanner.render(onScanSuccess, onScanError);
 
       function onScanSuccess(decodedText) {
         scanner.clear();
-        handleVerification(decodedText);
+        handleVerification(decodedText.trim());
       }
 
       function onScanError(err) {
