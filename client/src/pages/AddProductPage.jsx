@@ -84,7 +84,15 @@ export default function AddProductPage() {
               
               <p className="text-sm text-slate-500 mb-2">Generated Barcode</p>
               <div className="flex justify-center bg-white p-2 border border-slate-200 rounded-lg">
-                <Barcode value={result.productId} height={50} displayValue={true} background="transparent" />
+                <Barcode 
+                  value={result.productId} 
+                  width={3} 
+                  height={60} 
+                  displayValue={true} 
+                  background="#ffffff" 
+                  lineColor="#000000" 
+                  margin={10} 
+                />
               </div>
               
               <p className="text-xs text-slate-400 mt-4">Print either of these and attach to the product</p>
